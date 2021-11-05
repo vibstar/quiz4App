@@ -59,14 +59,17 @@ export default function App() {
         <SafeAreaView style={styles.container}>
 
         <Text style = {styles.topBox}>Github Viewer</Text>
+        <View style={{flexDirection: 'row'}}>
         <Text style = {styles.inputSection}>github ID:</Text>
         <TextInput 
         placeholder= 'userID'
         style={[{fontSize: 32}]}
         onChangeText={(val) => setUserID(val)}
         />
+        </View>
         <Button
-            style = {styles.repoButton}
+            style = {styles.repoButton, {textAlign : 'center'}}
+
             onClick= {handleClick}
             title = 'show repositories'>
         </Button>
@@ -82,10 +85,11 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container:{
-    flex: 1
+    flex: 1,
   },
   gitInputId: {
     flexDirection: 'row',
+    direction: 'ltr',
     backgroundColor: "#fff",
     padding: 5,
     marginVertical: 5
@@ -97,24 +101,23 @@ const styles = StyleSheet.create({
   },
   inputSection: {
     fontSize: 32,
-    borderWidth: 1,
+    width: 130,
+    direction: 'ltr',
     color: 'black'
   },
   topBox: {
     paddingTop: '5%',
     width: '100%',
-    height: '15%',
+    height: '10%',
     backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
+    textAlign: 'center',
     color: 'red',
     fontSize: 40,
     },
-  repoButton: {
-    alignItems: 'flex-start'
-    },
   showRepoButton: {
     fontSize: 18,
+    justifyContent: "flex-start",
+    textAlign: 'left',
     color: '#3B39B2'
     },
   greyBox: {
