@@ -3,8 +3,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-    return ( <View style = { styles.container } >
-        <Text> This is the </Text>
+    return ( <View style = { styles.topBox } >
+
+        <Text style = {styles.topText}> Github Viewer </Text>
         <StatusBar style = "auto"/>
         </View>
     );
@@ -17,4 +18,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    topBox: {
+        flex: .2,
+        backgroundColor: '#000',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    topText : {
+        color: 'red',
+        fontSize: 20,
+    }
 });
