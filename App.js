@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, TextInput, SectionList } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, TextInput, Button, SectionList } from "react-native";
 
 const DATA = [
   {
@@ -24,6 +24,7 @@ export default function App() {
         <SafeAreaView style={styles.topBox}>
         <Text style = {styles.topText}>Github Viewer</Text>
         </SafeAreaView>
+
         <SafeAreaView style={styles.gitInputId}>
         <Text style = {styles.inputSection}>github ID:
         
@@ -34,6 +35,14 @@ export default function App() {
         onChangeText={(val) => setUserID(val)}
         />
         </SafeAreaView>
+
+        <SafeAreaView style={styles.repoButton}>
+        <Button
+            onPress={() => { }}
+            title="Show repositories"
+        />
+        </SafeAreaView>
+
         </>
     );
   }
@@ -42,7 +51,6 @@ const styles = StyleSheet.create({
   gitInputId: {
     flexDirection: 'row',
     backgroundColor: "#fff",
-    borderWidth: 1,
     padding: 5,
     marginVertical: 5
   },
@@ -63,9 +71,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
-topText : {
+    topText : {
     color: 'red',
     fontSize: 40,
+    },
+    repoButton: {
+        alignItems: 'flex-start'
+    },
+    showRepoButton: {
+        fontSize: 18,
+        color: '#3B39B2'
     }
+
+
 });
