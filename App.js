@@ -6,21 +6,61 @@ import { FlatList } from "react-native-gesture-handler";
 
 
 export default function App() {
+    const DATA = [
+        {
+            title: 'Repository 1',
+        },
+        {
+            title: 'Repository 2',
+        },
+        {
+            title: 'Repository 3',
+        },
+        {
+            title: 'Repository 4',
+        },
+        {
+            title: 'Repository 5',
+        },
+        {
+            title: 'Repository 6',
+        },
+        {
+            title: 'Repository 7',
+        },
+        {
+            title: 'Repository 8',
+        },
+        {
+            title: 'Repository 9',
+        },
+        {
+            title: 'Repository 10',
+        },
+        {
+            title: 'Repository 11',
+        },
+        {
+            title: 'Repository 12',
+        },
+        {
+            title: 'Repository 13',
+        },
+        {
+            title: 'Repository 14',
+        },
+        {
+            title: 'Repository 15',
+        },
+        {
+            title: 'Repository 16',
+        },
+    ];
+
     const [userID, setUserID] = useState('');
-    const [repositories,getRepositories] = useState({
-        data: '',
-        loading: true
-    })
-
-    
-
-    async function handleClick() {
-        const repositories = await axios.get('https://api.github.com/users/' + userID + '/repos');
-        getRepositories({
-            data: repositories,
-            loading: false
-        });
-
+    const [submitted, SetSubmitted] = useState(false);
+    const handleClick = () => {
+        SetSubmitted(!submitted);
     }
     // const Item = ({ repositories }) => (
     //     <View style={styles.greyBox}>
@@ -29,99 +69,123 @@ export default function App() {
     // );
 
 
-    const DATA = [
-        {
-          id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-          title: 'First Item',
-        },
-        {
-          id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-          title: 'Second Item',
-        },
-        {
-          id: '58694a0f-3da1-471f-bd96-145571e29d72',
-          title: 'Third Item',
-        },
-      ];
-      
-      const Item = ({ title }) => (
+
+
+
+
+    const Item = ({ title }) => (
         <View style={styles.greyBox}>
-          <Text style={styles.inputSection}>{title}</Text>
+            <Text style={styles.title}>{title}</Text>
         </View>
-      );
-      
-      const renderItem = ({ item }) => (
+    );
+
+
+    const renderItem = ({ item }) => (
         <Item title={item.title} />
-      );
+    );
 
     return (
-    
+
         <SafeAreaView style={styles.container}>
 
-        <Text style = {styles.topBox}>Github Viewer</Text>
-        <View style={{flexDirection: 'row'}}>
-        <Text style = {styles.inputSection}>github ID:</Text>
-        <TextInput 
-        placeholder= 'userID'
-        style={[{fontSize: 32}]}
-        onChangeText={(val) => setUserID(val)}
-        />
-        </View>
-        <Button
-            style = {styles.repoButton, {textAlign : 'center'}}
+            <Text style={styles.topBox}>Github Viewer</Text>
+            <View style={{ flexDirection: 'row' }}>
+                <Text style={styles.inputSection}>github ID:</Text>
+                <TextInput
+                    placeholder='userID'
+                    style={[{ fontSize: 32 }]}
+                    onChangeText={(val) => setUserID(val)}
+                />
+            </View>
+            <Button
+                style={styles.repoButton, { textAlign: 'left' }}
 
-            onClick= {handleClick}
-            title = 'show repositories'>
-        </Button>
-        <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        /> 
+                onPress={handleClick}
+                title={submitted ? 'hide repositories' : 'show repositories'}>
+            </Button>
+            {submitted ?
+                <FlatList
+                    data={DATA}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.id}
+                />
+                :
+                null
+            }
+
+            <View style={styles.debuggingSection}>
+                <Text>DEBUGGING</Text>
+                <Text>userID: {userID}</Text>
+                {submitted ?
+                <Text>showReps: true</Text>
+                :
+                <Text>showReps: false</Text>
+                }
+                {submitted ?
+                <Text>Repos.length:{DATA.length}</Text>
+                :
+                <Text>Repos.length:0</Text>
+                }
+                
+            </View>
         </SafeAreaView>
 
     );
-  }
+}
 
 const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-  },
-  gitInputId: {
-    flexDirection: 'row',
-    direction: 'ltr',
-    backgroundColor: "#fff",
-    padding: 5,
-    marginVertical: 5
-  },
-  header: {
-    fontSize: 32,
-    color: 'red',
-    backgroundColor: "black"
-  },
-  inputSection: {
-    fontSize: 32,
-    width: 130,
-    direction: 'ltr',
-    color: 'black'
-  },
-  topBox: {
-    paddingTop: '5%',
-    width: '100%',
-    height: '10%',
-    backgroundColor: '#000',
-    textAlign: 'center',
-    color: 'red',
-    fontSize: 40,
+    container: {
+        flex: 1,
     },
-  showRepoButton: {
-    fontSize: 18,
-    justifyContent: "flex-start",
-    textAlign: 'left',
-    color: '#3B39B2'
+    gitInputId: {
+        flexDirection: 'row',
+        direction: 'ltr',
+        backgroundColor: "#fff",
+        padding: 5,
+        marginVertical: 5
     },
-  greyBox: {
-    color: '#999999'
+    header: {
+        fontSize: 32,
+        color: 'red',
+        backgroundColor: "black"
+    },
+    inputSection: {
+        fontSize: 32,
+        width: 130,
+        direction: 'ltr',
+        color: 'black'
+    },
+    debuggingSection: {
+        padding: 15,
+        fontSize: 18,
+        width: 150,
+        direction: 'ltr',
+        color: 'black'
+    },
+    topBox: {
+        paddingTop: '5%',
+        width: '100%',
+        height: '10%',
+        backgroundColor: '#000',
+        textAlign: 'center',
+        color: 'red',
+        fontSize: 40,
+    },
+    showRepoButton: {
+        fontSize: 18,
+        justifyContent: "flex-start",
+        textAlign: 'left',
+        color: '#007AFF'
+    },
+    greyBox: {
+        backgroundColor: '#808080',
+        padding: 15,
+        marginVertical: 15,
+        marginHorizontal: "5%",
+        width: '70%'
+    },
+    title: {
+        fontSize: 24
     }
 
 });
