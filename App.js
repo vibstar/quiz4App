@@ -18,9 +18,8 @@ const Item = ({ title }) => (
 
 
 
-class App extends Component {
-
-  render() {
+export default function App() {
+      const [userID, setUserID] = useState('');
     return (<>
         <SafeAreaView style={styles.topBox}>
         <Text style = {styles.topText}>Github Viewer</Text>
@@ -32,19 +31,14 @@ class App extends Component {
         <TextInput 
         placeholder= 'userID'
         style={[{fontSize: 32}]}
+        onChangeText={(val) => setUserID(val)}
         />
         </SafeAreaView>
         </>
     );
   }
-}
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    paddingTop: StatusBar.currentHeight,
-    alignItems: 'center',
-  },
   gitInputId: {
     flexDirection: 'row',
     backgroundColor: "#fff",
@@ -75,5 +69,3 @@ topText : {
     fontSize: 40,
     }
 });
-
-export default App;
